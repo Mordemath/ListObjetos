@@ -1,0 +1,22 @@
+# Ejercicio 1
+
+Considera el lenguaje JavaScript acotado al paradigma de programación orientada a objetos basado en prototipos y analízalo en términos de [los cuatro componentes de un paradigma](https://www.notion.so/f36d432c55274b93913dc289446f424d?pvs=21) mencionados por Kuhn.
+
+1. Generalización simbólica: ¿Cuáles son las reglas escritas del lenguaje?
+2. Creencias de los profesionales: ¿Qué características particulares del lenguaje se
+cree que sean "mejores" que en otros lenguajes?
+
+
+
+
+**1**_avaScript no es un lenguaje orientado a objetos basado en clases. Pero todavía tiene formas de usar la programación orientada a objetos mediante prototipos.
+
+En JavaScript, todos los objetos tiene una propiedad privada que contiene un enlace a otro objeto que es su **prototipo**. Luego, ese objeto prototipo tiene su propio prototipo, y así sucesivamente hasta llegar a un objeto cuyo prototipo es  `null`. 
+
+El valor `null` actúa como el último eslabón de esta **cadena de prototipos**, pues no tiene prototipo.
+
+Esto nos da a entender que en JavaScript todos los objetos heredan de otro objeto y que esta herencia se da a través de esta cadena de prototipos a la que llamamos herencia prototípica.
+
+
+
+**2**_El uso de objetos en JavaScript puede resultar beneficioso, ya que permiten organizar los datos de una manera eficiente y manejable . Los objetos ayudan a mantener juntas las variables y funciones relacionadas, lo que permite crear código modular que se puede reutilizar y abstraer en componentes reutilizables.

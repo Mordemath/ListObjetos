@@ -1,7 +1,7 @@
 import scannf from './node_modules/prompt-sync/index.js';
 import chalk from 'chalk';
 import Pausa from './source/pausa.js';
-import tareas from './index.js';
+import tareas from './source/ListaDeTareasIndex.js';
 import Buscador from './source/Buscador.js';
 let Scannf = scannf();
 let pausa = new Pausa();
