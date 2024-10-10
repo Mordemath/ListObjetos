@@ -224,7 +224,8 @@ export default function Tarea() {
     }
     this.Crear = function (f) {
         let op = `0`;
-        do {
+        while (!(op == `7`)) {
+            console.clear();
             let aux;
             if (f == `1`) {
                 console.log(`\n\n`);
@@ -298,6 +299,7 @@ export default function Tarea() {
                         break;
                     }
                     else {
+                        this.SetUltimaEd();
                         return `2`;
                     }
                 case `7`:
@@ -308,10 +310,7 @@ export default function Tarea() {
                     break;
             }
             pausa.run();
-            console.clear();
-        } while (op = ! `7`);
+        }
         return `-1`;
     }
-
-
 }

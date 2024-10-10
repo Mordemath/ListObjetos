@@ -5,6 +5,7 @@ import chalk  from 'chalk';
 
 let Scannf = scannf();
 let tareas = [];
+export default tareas;
 let pausa = new Pausa();
 let auxTarea = new tarea();
 let hayTareas = false;
