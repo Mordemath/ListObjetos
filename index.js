@@ -13,7 +13,7 @@ while (op != `0`) {
     op = Scannf(`Opción: `);
     switch (op) {
         case `1`:
-            
+            a
             break;
         case `2`:
 
