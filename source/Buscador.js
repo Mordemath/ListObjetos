@@ -7,10 +7,10 @@ let pausa = new Pausa();
 let ver = new MenuVer();
 export default function Buscador() {
     this.BuscarPor = function (tareas, op, j) {
-        j = j - 1;
+        j = parseInt(j) - 1;
         switch (op) {
             case `0`://Buscamos por indice en el array tareas*****************
-                if (j > tareas.length || j < 0 || isNaN(j)) {
+                if (j >= tareas.length || j < 0 || isNaN(j)) {
                     console.log(chalk.redBright(`No se encuentran resultados para el indice ingresado...`));
                     return `-1`;
                 }

@@ -73,13 +73,13 @@ export default function MenuVer() {
             if (op != ``) {
                 let indice = op - 1;
                 let existeTarea = this.buscador.BuscarPor(tareas, `0`, op);
-                if (existeTarea != `-1`) {
+                if (existeTarea ==! `-1`) {
                     this.VerDetalles((indice), tareas);
                     console.log("Si deseas editarla ingresa [E] o solo [ENTER] para volver\n");
                     op = Scannf();
                     if (op == `E` || op == `e`) {
                         let aux = tareas[indice];
-                        if (tareas[indice].Crear(`1`) == `-1`) {
+                        if (tareas[indice].SetTarea(`1`) == `-1`) {
                             console.log(chalk.redBright(`Cancelado...`));
                             tareas[indice] = aux;
                             op = `-1`;
