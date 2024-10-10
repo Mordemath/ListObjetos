@@ -2,13 +2,16 @@ import tarea from './tarea.js';
 import Pausa from './source/pausa.js';
 import scannf from './node_modules/prompt-sync/index.js';
 import chalk  from 'chalk';
-
+import MenuVer from './MenuVer.js';
+import Buscador from  './source/Buscador.js';
+let buscador = new Buscador();
 let Scannf = scannf();
 let tareas = [];
 export default tareas;
 let pausa = new Pausa();
 let auxTarea = new tarea();
 let hayTareas = false;
+let menuVer = new MenuVer();
 let op = ``;
 while (op != `0`) {
     console.log(chalk.blueBright("Hola Olivia\n¿Qué deseas hacer?\n"));
@@ -16,10 +19,10 @@ while (op != `0`) {
     op = Scannf(`Opción: `);
     switch (op) {
         case `1`:
-
+            menuVer.run();
             break;
         case `2`:
-
+            buscador.BuscarPor(tareas, `1`, 0);
             break;
         case `3`:
             let x = auxTarea.Crear(`0`);

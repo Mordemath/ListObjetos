@@ -208,7 +208,7 @@ export default function Tarea() {
         return this.estado;
     }
     this.GetDescripción = function () {
-        return this.descripcion;
+        return this.descripción;
     }
     this.GetVencimiento = function () {
         return this.vencimiento;
