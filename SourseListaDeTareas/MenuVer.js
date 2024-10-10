@@ -1,8 +1,8 @@
-import scannf from './node_modules/prompt-sync/index.js';
+import scannf from 'prompt-sync';
 import chalk from 'chalk';
-import Pausa from './source/pausa.js';
-import tareas from './source/ListaDeTareasIndex.js';
-import Buscador from './source/Buscador.js';
+import Pausa from './pausa.js';
+import tareas from './ListaDeTareasIndex.js';
+import Buscador from './Buscador.js';
 let Scannf = scannf();
 let pausa = new Pausa();
 export default function MenuVer() {
@@ -73,16 +73,19 @@ export default function MenuVer() {
             if (op != ``) {
                 let indice = op - 1;
                 let existeTarea = this.buscador.BuscarPor(tareas, `0`, op);
-                if (existeTarea ==! `-1`) {
+                if (existeTarea != `-1`) {
                     this.VerDetalles((indice), tareas);
                     console.log("Si deseas editarla ingresa [E] o solo [ENTER] para volver\n");
                     op = Scannf();
                     if (op == `E` || op == `e`) {
-                        let aux = tareas[indice];
-                        if (tareas[indice].SetTarea(`1`) == `-1`) {
+                        let auxTarea = Object.assign({},tareas[indice]);
+                        let x = auxTarea.SetTarea(`1`);
+                        if (x == `-1`) {
                             console.log(chalk.redBright(`Cancelado...`));
-                            tareas[indice] = aux;
                             op = `-1`;
+                        }
+                        else{
+                            tareas[indice] = Object.assign({},auxTarea);
                         }
                     }
                     else {
@@ -90,7 +93,6 @@ export default function MenuVer() {
                     }
                 }
             }
-            pausa.run();
         }
     }
     this.VerDetalles = function (i, tareas) {
