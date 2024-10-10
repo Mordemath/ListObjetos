@@ -1,12 +1,12 @@
 import scannf from './node_modules/prompt-sync/index.js';
 import chalk from 'chalk';
-import pausa from './source/pausa';
+import Pausa from './source/pausa.js';
 let Scannf = scannf();
 let pausa = new Pausa();
 export default function Tarea() {
     this.fechaHoy = new Date();
     this.fechaActual = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
-    this.titulo = "----------";
+    this.titulo = ` `;
     this.estado = "Pendiente";
     this.descripción = "----------";
     this.vencimiento = "----------";
@@ -30,6 +30,7 @@ export default function Tarea() {
             }
         } while (this.titulo == " " || this.titulo == "  " || this.titulo == "   " || this.titulo.length > 100);
         if (this.titulo == "") {
+            this.titulo = " ";
             return `-1`;
         }
         else {
@@ -43,7 +44,8 @@ export default function Tarea() {
             console.log(`[] Ingresa el estado o solo [Enter] para cancelar:\n([P]endiente) / [E]n curso / [T]erminada / [C]ancelada:`);
             this.estado = Scannf(`>`);
             if (this.estado == ` `) {
-                return ` `;
+                this.estado = "Pendiente";
+                return this.estado;
             }
             if (this.estado != "P" && this.estado != "E" && this.estado != "T" && this.estado != "C" && this.estado != "") {
                 console.log("Opción invalida, opciónes validas: P, E, T, C.\nVuelva a intentarlo.");
@@ -52,7 +54,6 @@ export default function Tarea() {
             }
         } while (this.estado != "P" && this.estado != "E" && this.estado != "T" && this.estado != "C" && this.estado != "");
         if (this.estado == "") {
-            this.estado = "Pendiente";
             return `-1`;
         }
         else {
@@ -94,7 +95,7 @@ export default function Tarea() {
             return this.descripción;
         }
     }
-    this.SetVencimiento = function () {
+    this.SetVencimiento = function () {//Retorna un vencimiento o `-1` si es cncelado************************************************
         let año;
         let mes;
         let dia;
@@ -106,8 +107,9 @@ export default function Tarea() {
             console.log(`[] Ingresa el año de vencimiento o solo [Enter] para cancelar:\n`);
             console.log(`[Ejemplo: 2021]`);
             año = Scannf(`>`);
-            if (año == ` ` && f == `1`) {
-                return ` `;
+            if (año == ` `) {
+                this.vencimiento = "----------";
+                return "----------";
             }
             if ((año.length != 4 || año == NaN) && año != "") {
                 console.log("Año ingresado invalido, solo se admiten numeros de 4 digitos sin espacios.\nVuelva a intentarlo.");
@@ -160,13 +162,14 @@ export default function Tarea() {
             return this.vencimiento;
         }
     }
-    this.SetDificultad = function () {
+    this.SetDificultad = function () {//Retorna una dificultad o `-1` si es cncelado************************************************
         console.clear();
         do {
             console.log(`[] Ingresa la dificultad o solo [Enter] para cancelar:\nDificultad [F]acil / [M]edio / [D]ificil:`);
             this.dificultad = Scannf(`>`);
-            if (this.dificultad == ` ` && f == `1`) {
-                return ` `;
+            if (this.dificultad == ` `) {
+                this.dificultad = "🌑🌑🌑";
+                return this.dificultad;
             }
             if (this.dificultad != "F" && this.dificultad != "M" && this.dificultad != "D" && this.dificultad != "") {
                 console.log("Opción invalida, opciónes validas: F, M, D.\nVuelva a intentarlo.");
@@ -194,11 +197,121 @@ export default function Tarea() {
             return this.dificultad;
         }
     }
-    this.SetUltimaEd = function () {
+    this.SetUltimaEd = function () {//Actualiza ultima edición************************************************
         this.fechaEd = new Date();
         this.ultimaEd = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
     }
     this.GetTitulo = function () {
         return this.titulo;
     }
+    this.GetEstado = function () {
+        return this.estado;
+    }
+    this.GetDescripción = function () {
+        return this.descripcion;
+    }
+    this.GetVencimiento = function () {
+        return this.vencimiento;
+    }
+    this.GetDificultad = function () {
+        return this.dificultad;
+    }
+    this.GetUltimaEd = function () {
+        return this.ultimaEd;
+    }
+    this.GetCreacion = function () {
+        return this.creación;
+    }
+    this.Crear = function (f) {
+        let op = `0`;
+        do {
+            let aux;
+            if (f == `1`) {
+                console.log(`\n\n`);
+                console.log(chalk.greenBright("Estas editando una tarea"));
+                console.log(`Si deseas mantener los valores de un atributo simplemente dejalo en blanco.`);
+                console.log(`Si deseas dejar en blanco un atributo escribe un espacio(Solo funciona con atributos que puedan estar en blanco).`);
+                console.log(`*************************\n1. Editar titulo.\n2. Editar descripción.\n3. Editar Estado.\n4. Editar dificultad.\n5. Editar vencimiento.\n6. Guardar Cambios.\n7. Cancelar.`);
+
+            }
+            else {
+                console.log(chalk.greenBright("Estas creando una tarea\n"));
+                console.log(`*************************\n1. Asignar titulo.\n2. Asignar descripción.\n3. Asignar Estado.\n4. Asignar dificultad.\n5. Asignar vencimiento.\n6. Guardar Cambios.\n7. Cancelar.`);
+
+            }
+            op = Scannf(chalk.greenBright(">>"));
+            switch (op) {
+                case `1`:
+                    aux = this.SetTitulo();
+                    if (aux == `-1`) {
+                        console.clear();
+                        console.log(chalk.redBright(`Cancelado...`));
+                    }
+                    else {
+                        console.log(chalk.greenBright(`Titulo Guardado: ${aux}`));
+                    }
+                    break;
+                case `2`:
+                    aux = this.SetDescripción();
+                    if (aux == `-1`) {
+                        console.clear();
+                        console.log(chalk.redBright(`Cancelado...`));
+                    }
+                    else {
+                        console.log(chalk.greenBright(`Descripción Guardada: ${aux}`));
+                    }
+                    break;
+                case `3`:
+                    aux = this.SetEstado();
+                    if (aux == `-1`) {
+                        console.clear();
+                        console.log(chalk.redBright(`Cancelado...`));
+                    }
+                    else {
+                        console.log(chalk.greenBright(`Estado Guardado: ${aux}`));
+                    }
+                    break;
+                case `4`:
+                    aux = this.SetDificultad();
+                    if (aux == `-1`) {
+                        console.clear();
+                        console.log(chalk.redBright(`Cancelado...`));
+                    }
+                    else {
+                        console.log(chalk.greenBright(`Dificultad guardada: ${aux}`));
+                    }
+                    break;
+                case `5`:
+                    aux = this.SetVencimiento();
+                    if (aux == `-1`) {
+                        console.clear();
+                        console.log(chalk.redBright(`Cancelado...`));
+                    }
+                    else {
+                        console.log(chalk.greenBright(`Vencimientoo Guardado: ${aux}`));
+                    }
+                    break;
+                case `6`:
+                    if (this.GetTitulo() == ` `) {
+                        console.log(chalk.redBright(`Primero debe ingresar un Titulo de tarea.`));
+                        op = `0`;
+                        break;
+                    }
+                    else {
+                        return `2`;
+                    }
+                case `7`:
+                    break;
+
+                default:
+                    console.log(chalk.redBright(`Opción invalida...`));
+                    break;
+            }
+            pausa.run();
+            console.clear();
+        } while (op = ! `7`);
+        return `-1`;
+    }
+
+
 }
