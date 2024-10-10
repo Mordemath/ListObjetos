@@ -222,7 +222,7 @@ export default function Tarea() {
     this.GetCreacion = function () {
         return this.creación;
     }
-    this.Crear = function (f) {
+    this.SetTarea = function (f) {
         let op = `0`;
         while (!(op == `7`)) {
             console.clear();

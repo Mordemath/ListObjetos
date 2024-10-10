@@ -1,9 +1,9 @@
 import tarea from './tarea.js';
 import Pausa from './source/pausa.js';
 import scannf from './node_modules/prompt-sync/index.js';
-import chalk  from 'chalk';
+import chalk from 'chalk';
 import MenuVer from './MenuVer.js';
-import Buscador from  './source/Buscador.js';
+import Buscador from './source/Buscador.js';
 let buscador = new Buscador();
 let Scannf = scannf();
 let tareas = [];
@@ -19,14 +19,24 @@ while (op != `0`) {
     op = Scannf(`Opción: `);
     switch (op) {
         case `1`:
-            menuVer.run();
+            if (hayTareas) {
+                menuVer.run();
+            }
+            else {
+                console.log(chalk.redBright("No hay tareas para mostrar.\n"));
+            }
             break;
         case `2`:
-            buscador.BuscarPor(tareas, `1`, 0);
+            if (hayTareas) {
+                buscador.BuscarPor(tareas, `1`, 0);
+            }
+            else {
+                console.log(chalk.redBright("No hay tareas para mostrar.\n"));
+            }
             break;
         case `3`:
-            let x = auxTarea.Crear(`0`);
-            if ( x == `-1`) {//`0`para crear tarea, `1` para editarla**********************************
+            let x = auxTarea.SetTarea(`0`);//`0`para crear tarea, `1` para editarla**********************************
+            if (x == `-1`) {
                 console.log(chalk.redBright("Cancelado...\n"));
             }
             else {
