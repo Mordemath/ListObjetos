@@ -198,4 +198,7 @@ export default function Tarea() {
         this.fechaEd = new Date();
         this.ultimaEd = this.fechaHoy.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
     }
+    this.GetTitulo = function () {
+        return this.titulo;
+    }
 }
