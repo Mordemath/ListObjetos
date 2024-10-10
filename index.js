@@ -35,12 +35,13 @@ while (op != `0`) {
             }
             break;
         case `3`:
-            let x = auxTarea.SetTarea(`0`);//`0`para crear tarea, `1` para editarla**********************************
+            let x = auxTarea.SetTarea(`0`);
+            tareas.push(Object.assign({},auxTarea));//`0`para crear tarea, `1` para editarla**********************************
             if (x == `-1`) {
                 console.log(chalk.redBright("Cancelado...\n"));
+                tareas.pop();
             }
             else {
-                tareas.push(auxTarea);
                 console.log(chalk.greenBright(`¡Datos guardados!`));
                 hayTareas = true;
             }

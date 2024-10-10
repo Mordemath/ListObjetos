@@ -24,6 +24,7 @@ export default function MenuVer() {
                     for (let i = 0; i < tareas.length; i++) {
                         this.VerTarea(i, tareas);
                     }
+                    break;
                 case `2`:
                     console.log(chalk.blueBright(`Estas son todas tus tareas [P]endientes:\n`));
                     for (let i = 0; i < tareas.length; i++) {
