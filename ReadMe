@@ -1,0 +1,3 @@
+paquetes a instalar:
+npm i chalk
+npm i prompt-sync
