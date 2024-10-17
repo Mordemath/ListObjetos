@@ -49,7 +49,7 @@ export default function calculadora() {
                     break;
                 case `5`:
                     console.log(chalk.blueBright(`Ingrese la expresión Ej: ((-3+1)*5+20)/2\n\n`));
-                    this.s = scannf(`>>`);
+                    this.s = scannf(`>`);
                     if (this.TieneLetra(this.s)) {
                         console.log(chalk.redBright(`Error...`));
                         break;
