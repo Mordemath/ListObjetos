@@ -9,7 +9,7 @@ cree que sean "mejores" que en otros lenguajes?
 
 
 
-**1**_avaScript no es un lenguaje orientado a objetos basado en clases. Pero todavía tiene formas de usar la programación orientada a objetos mediante prototipos.
+**1**_JavaScript no es un lenguaje orientado a objetos basado en clases. Pero todavía tiene formas de usar la programación orientada a objetos mediante prototipos.
 
 En JavaScript, todos los objetos tiene una propiedad privada que contiene un enlace a otro objeto que es su **prototipo**. Luego, ese objeto prototipo tiene su propio prototipo, y así sucesivamente hasta llegar a un objeto cuyo prototipo es  `null`. 
 
@@ -20,3 +20,31 @@ Esto nos da a entender que en JavaScript todos los objetos heredan de otro objet
 
 
 **2**_El uso de objetos en JavaScript puede resultar beneficioso, ya que permiten organizar los datos de una manera eficiente y manejable . Los objetos ayudan a mantener juntas las variables y funciones relacionadas, lo que permite crear código modular que se puede reutilizar y abstraer en componentes reutilizables.
+
+
+#  Ejercicio 4
+Explica en un texto, con ejemplos y fundamentación qué características de la OOP utilizaste para resolver los programas de los Ejercicios 2 y 3. Si hay alguna que no utilizaste o no implementaste, indica cuál y por qué crees que no fue necesario.
+
+Abstracción: En El taskManager en el index de lista de tareas, utilizamos el metodo de "SetTarea(0)" de un objeto tipo
+    tarea para setear los valores de una tarea creandola.
+    Para el index, no importa como SetTarea Crea la tarea, pero sabe que Setea los parametros de la tarea en cuestion y devuelve un "-1" como indicador si se cancela la acción. 
+    Además, tampoco sabe como, pero lo que importa es que con el parametro 0 se crea una tarea y con el parametro 1 se edita.
+    Hay mas ejemplos pero este es suficiente.
+
+Encapsulamiento: Por ejmplo en la lista de tareas, los geter y los seter de los atributos de las tareas, son un buen
+    ejemplo de como en un objeto están encapsulados los metodos que se relaciónan intrinsecamente con los atributos del mismo. 
+    Ademas, podemos ver en el prototipo tarea un metodo que se llama setTarea que interactúa con los seter de los atributos de la tarea. Por ejemplo, si se intenta setear un atributo, no se accede directamente al seter, sino al metodo setTarea donde se proporcióna una lista de los atributos a setear y setTarea es la que se encarga de llamar a los seter.
+
+Polimorfismo:  En el metodo SetTarea usamos polimorfismo usamos polimorfismo ya que podemos usarlo para agregar na tarea
+    desde 0 o para editar una tarea. este comportamiento se puede controlar con un solo parametro el cual puede ser 1 o 0
+
+Herencia: No usamos herencia directamente ya que no tuvimos una gran variedad de objetos diferentes o que compartieran
+    metodos y atributos. Pero utilizamos algunas funciones nativas de objetos de javaScript por ejemplo el metodo length  ej : año.length para  obtener la cantidad de caracteres de una cadena de texto.
+
+Modularidad: Utilizamos varios modulos para poder organizar nuestro codigo, para que sea más legible, organizado, 
+    separar o agrupar funciones relacionadas,  y fácil de mantener. Por ejemplo, el archivo index.js es el archivo principal, y en él, importamos muchos otros modulos. Ej: tareas, Buscador, VerMenu etc.
+
+Principio de ocultación: Lo utilizamos por ejemplo en el prototipo tarea para acceder a los seter de tarea 
+    indirectamente,  mediante el metodo setTarea. Por ejemplo, si se intenta setear un atributo setTarea lo hace en vez 
+    de usar los seter desde fuera de tarea. Siendo SetTarea la interfaz  de acceso a los seter de tarea.
+

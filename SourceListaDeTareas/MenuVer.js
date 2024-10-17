@@ -4,7 +4,6 @@ import Pausa from '../source/pausa.js';
 import tareas from './ListaDeTareasIndex.js';
 import Buscador from './Buscador.js';
 let Scannf = scannf();
-let pausa = new Pausa();
 export default function MenuVer() {
     this.buscador = new Buscador();
     this.run = function () {
@@ -79,7 +78,7 @@ export default function MenuVer() {
                     op = Scannf();
                     if (op == `E` || op == `e`) {
                         let auxTarea = Object.assign({},tareas[indice]);
-                        let x = auxTarea.SetTarea(`1`);
+                        let x = auxTarea.SetTarea(`1`);//parametro 1 para editar**************************************************************
                         if (x == `-1`) {
                             console.log(chalk.redBright(`Cancelado...`));
                             op = `-1`;
