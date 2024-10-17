@@ -1,7 +1,7 @@
 import tarea from './tarea.js';
 import scannf from 'prompt-sync';
 import chalk from 'chalk';
-import MenuVer from '../source/MenuVer.js';
+import MenuVer from './MenuVer.js';
 import Buscador from './Buscador.js';
 let tareas = [];
 export default tareas;

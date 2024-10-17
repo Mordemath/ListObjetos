@@ -1,6 +1,6 @@
 import scannf from 'prompt-sync';
 import chalk from 'chalk';
-import Pausa from './pausa.js';
+import Pausa from '../source/pausa.js';
 import tareas from './ListaDeTareasIndex.js';
 import Buscador from './Buscador.js';
 let Scannf = scannf();

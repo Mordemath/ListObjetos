@@ -1,7 +1,7 @@
 import scannf from 'prompt-sync';
 import chalk from 'chalk';
 import Pausa from '../source/pausa.js';
-import MenuVer from '../source/MenuVer.js';
+import MenuVer from './MenuVer.js';
 let Scannf = scannf();
 let pausa = new Pausa();
 let ver = new MenuVer();
